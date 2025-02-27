@@ -1,0 +1,24 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankingApp.Views.ShoppingCartPage"
+             BackgroundColor="Pink">
+
+    <StackLayout Padding="10">
+        <Label Text="Shopping Cart" FontSize="20" HorizontalOptions="Center" Padding="10" FontAttributes="Bold" />
+
+        <ListView x:Name="ShoppingCartListView" ItemsSource="{Binding Cart}" SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10" Spacing="20">
+                            <Label Text="{Binding Name}" FontSize="16" WidthRequest="150" LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding Quantity, StringFormat='Qty: {0}'}" FontSize="14" WidthRequest="80" HorizontalOptions="End" />
+                            <Button Text="Remove" Command="{Binding RemoveFromCartCommand}" CommandParameter="{Binding}" BackgroundColor="LightCoral" TextColor="White" Padding="5" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

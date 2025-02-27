@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BankingApp.Views"
+             x:Class="BankingApp.Views.ProductsPage"
+             BackgroundColor="SkyBlue">
+
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label Text="Products" FontSize="20" HorizontalOptions="FillAndExpand" />
+
+            <!-- Column of 5 Frames for Fruits -->
+            <StackLayout Spacing="10" Padding="5">
+                <Frame BorderColor="White" CornerRadius="10" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="Pink">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Image Source="smarttv.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" />
+                        <Label Text="Price: R10000.00" FontSize="14" HorizontalOptions="Center" />
+                        <Button Text="Add to Cart" Command="{Binding AddToCartCommand}" CommandParameter="smarttv"  BackgroundColor="SkyBlue"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="White" CornerRadius="10" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="Pink">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Image Source="smartwatch.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" />
+                        <Label Text="Price: R2500.00" FontSize="14" HorizontalOptions="Center" />
+                        <Button Text="Add to Cart" Command="{Binding AddToCartCommand}" CommandParameter="smartwatch" BackgroundColor="SkyBlue"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="White" CornerRadius="10" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="Pink">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Image Source="tablet.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" />
+                        <Label Text="Price: R5000.00" FontSize="14" HorizontalOptions="Center" />
+                        <Button Text="Add to Cart" Command="{Binding AddToCartCommand}" CommandParameter="tablet"  BackgroundColor="SkyBlue"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="White" CornerRadius="10" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="Pink">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Image Source="phone.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" />
+                        <Label Text="Price: R8000.00" FontSize="14" HorizontalOptions="Center" />
+                        <Button Text="Add to Cart" Command="{Binding AddToCartCommand}" CommandParameter="phone" BackgroundColor="SkyBlue"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="White" CornerRadius="10" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="Pink">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Image Source="tablet.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" />
+                        <Label Text="Price: R15000.00" FontSize="14" HorizontalOptions="Center" />
+                        <Button Text="Add to Cart" Command="{Binding AddToCartCommand}" CommandParameter="tablet" BackgroundColor="SkyBlue" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <!-- CollectionView for dynamically loaded products -->
+            <CollectionView x:Name="ProductsCollectionView" ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" HorizontalOptions="FillAndExpand">
+                            <Image Source="{Binding ImageUrl}" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" />
+                            <Label Text="{Binding ProductName}" FontSize="16" HorizontalOptions="Center" />
+                            <Label Text="{Binding Price, StringFormat='Price: R{0:F2}'}" FontSize="14" HorizontalOptions="Center" />
+                            <Button Text="Add" 
+        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProductsPage}}, Path=BindingContext.AddToCartCommand}" 
+        CommandParameter="{Binding .}" />
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Go to Cart" Clicked="OnGoToCartClicked" HorizontalOptions="FillAndExpand" BackgroundColor="CornflowerBlue" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
